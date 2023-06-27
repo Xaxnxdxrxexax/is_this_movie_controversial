@@ -21,7 +21,7 @@ type ActorsMovieResult = {
   crew?: CastAndCrew[];
 };
 
-export const ActorsMovieResult: ActorsMovieResult = {
+export const actorsMovieResult: ActorsMovieResult = {
   id: 550,
   cast: [
     {
