@@ -1,4 +1,4 @@
-type CastAndCrew = {
+export type CastAndCrew = {
   adult: boolean;
   gender: number;
   id: number;
@@ -15,7 +15,7 @@ type CastAndCrew = {
   job?: string;
 };
 
-type ActorsMovieResult = {
+export type ActorsMovieResult = {
   id: number;
   cast: CastAndCrew[];
   crew?: CastAndCrew[];

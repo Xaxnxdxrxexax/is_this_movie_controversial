@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { singleMovie } from "../data/singleMovieResult";
-import { ActorsMovieResult } from "../data/actorsMovieResult";
+import { actorsMovieResult } from "../data/actorsMovieResult";
 
 type Params = {
   movieId: string;

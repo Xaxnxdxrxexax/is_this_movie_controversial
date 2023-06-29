@@ -18,7 +18,7 @@ type Spoken_Languages = {
   name: string;
 };
 
-type SingleMovie = {
+export type SingleMovie = {
   adult: boolean;
   backdrop_path: string | null;
   belongs_to_collection: boolean | null;
