@@ -1,4 +1,4 @@
-type Movie = {
+export type Movie = {
   page: number;
   results: MovieResult[];
   total_pages: number;
