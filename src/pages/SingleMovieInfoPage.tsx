@@ -89,7 +89,7 @@ export default function SingleMovieInfoPage() {
       }
     }
     getMovieAndCast();
-  }, [movieId, movie?.title, openAI]);
+  }, [movieId]);
 
   const isPosterAvailable = movie?.poster_path
     ? `https://image.tmdb.org/t/p/original/${movie?.poster_path}`
