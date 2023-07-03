@@ -12,8 +12,10 @@ export default function Header() {
   }
   return (
     <>
-      <Link to="/">Is this movie controversial?</Link>
-      <nav className="flex justify-between text-white bg-black p-5">
+      <nav className="flex flex-col gap-5 items-center text-white bg-black p-5 sm:flex-row sm:justify-between">
+        <Link to="/" className="font-bold text-2xl">
+          Is this movie controversial
+        </Link>
         <form onSubmit={handleSearchSubmit}>
           <input
             type="text"
@@ -26,7 +28,7 @@ export default function Header() {
         <NavLink
           to="about-me"
           className={({ isActive }) =>
-            `no-underline p-1 pb-0.5 border-solid border-b-2 ${
+            `no-underline p-1 pb-0.5 border-solid border-b-2 self-end ${
               isActive ? "border-white" : "border-transparent"
             }`
           }
