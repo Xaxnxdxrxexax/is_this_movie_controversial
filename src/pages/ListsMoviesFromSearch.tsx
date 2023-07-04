@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import { Movie, MovieResult } from "../data/searchMoviesResult";
 import MovieBox from "../components/MovieBox";
@@ -11,8 +11,6 @@ export function ListsMoviesFromSearch() {
   const [movieList, setMovieList] = useState<Movie | null>(null);
   const [favorites, setFavorites] = useState<MovieResult[] | null>(null);
   const params = useParams<Params>();
-  //const [searchParams] = useSearchParams();
-  //const search = searchParams.get("search");
 
   // Fetch the list of movies from the params.movieList value
   useEffect(() => {
@@ -50,7 +48,7 @@ export function ListsMoviesFromSearch() {
     }
   }, []);
 
-  //other functions
+  //manage the local storage for the favorite movies list
   function updateLocalStorage(movieFavorites: MovieResult[]) {
     localStorage.setItem(
       "is_this_movie_controversial_fav",
@@ -72,6 +70,7 @@ export function ListsMoviesFromSearch() {
     setFavorites(newFavoriteList);
     updateLocalStorage(newFavoriteList);
   }
+
   const displayResultsStyle = "flex justify-center items-stretch flex-wrap";
   return (
     <div>

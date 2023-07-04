@@ -14,10 +14,6 @@ type Params = {
 export default function SingleMovieInfoPage() {
   const params = useParams<Params>();
 
-  // turn id into an integer only if it has a value
-  const movieId =
-    params.movieId === undefined ? undefined : parseInt(params.movieId);
-
   // fetch the singleMovie via the movieId and the actors
   const [movie, setMovie] = useState<SingleMovie | null>(null);
   const [cast, setCastAndCrew] = useState<ActorsMovieResult | null>(null);
@@ -25,6 +21,7 @@ export default function SingleMovieInfoPage() {
   const [error, setError] = useState(false);
   const [isChatGPTLoading, setIsChatGPTLoading] = useState(true);
   const [isCastLoading, setIsCastLoading] = useState(true);
+  const [isMovieLoading, setIsMovieLoading] = useState(true);
 
   //open ai configuration and response
   const openAI = new OpenAIApi(
@@ -36,19 +33,16 @@ export default function SingleMovieInfoPage() {
   //fetch the movie link and the credits for that movie,
   useEffect(() => {
     setIsCastLoading(true);
-    setIsChatGPTLoading(true);
+    setIsMovieLoading(true);
 
-    const movieLink = `${process.env
-      .REACT_APP_API_TMDB_SINGLE_MOVIE_SEARCH!}${movieId}?api_key=${
-      process.env.REACT_APP_API_TMDB_KEY
-    }`;
+    const movieLink = `${process.env.REACT_APP_API_TMDB_SINGLE_MOVIE_SEARCH!}${
+      params.movieId
+    }?api_key=${process.env.REACT_APP_API_TMDB_KEY}`;
 
     const creditsLink = `${process.env
-      .REACT_APP_API_TMDB_SINGLE_MOVIE_SEARCH!}${movieId}/credits?api_key=${
-      process.env.REACT_APP_API_TMDB_KEY
-    }`;
-
-    const chatGPTMessage = `I know that you are an AI language model so do not write that in the response. Up to your knowledge as of 2021, Are there any controversies connected to any actors, crew members and companies associated with the movie ${movie?.title}`;
+      .REACT_APP_API_TMDB_SINGLE_MOVIE_SEARCH!}${
+      params.movieId
+    }/credits?api_key=${process.env.REACT_APP_API_TMDB_KEY}`;
 
     const getMovie = async (): Promise<SingleMovie> => {
       const movieResp = await fetch(movieLink);
@@ -60,36 +54,53 @@ export default function SingleMovieInfoPage() {
       return await castAndCrewResp.json();
     };
 
-    const getGPTResponse = async (): Promise<string> => {
-      return await openAI
-        .createChatCompletion({
-          model: "gpt-3.5-turbo",
-          messages: [
-            {
-              role: "user",
-              content: chatGPTMessage,
-            },
-          ],
-        })
-        .then((res) => {
-          return res.data.choices[0].message?.content!;
-        });
-    };
-
     async function getMovieAndCast() {
       try {
         setMovie(await getMovie());
+        setIsMovieLoading(false);
         setCastAndCrew(await getCastAndCrew());
         setIsCastLoading(false);
-        setChatGPT(await getGPTResponse());
-        setIsChatGPTLoading(false);
       } catch (e) {
         console.error(e);
         setError(true);
       }
     }
     getMovieAndCast();
-  }, [movieId]);
+  }, [params.movieId]);
+
+  //useeffect to wait for the movie to be fetched and then ask chatGPT
+  useEffect(() => {
+    setIsChatGPTLoading(true);
+    if (!isMovieLoading) {
+      const chatGPTMessage = `I know that you are an AI language model so do not write that in the response. Up to your knowledge as of 2021, Are there any controversies connected to any actors, crew members and companies associated with the movie ${movie?.title}`;
+
+      const getGPTResponse = async (): Promise<string> => {
+        return await openAI
+          .createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                role: "user",
+                content: chatGPTMessage,
+              },
+            ],
+          })
+          .then((res) => {
+            return res.data.choices[0].message?.content!;
+          });
+      };
+      const getResponse = async function () {
+        try {
+          setChatGPT(await getGPTResponse());
+          setIsChatGPTLoading(false);
+        } catch (e) {
+          console.error(e);
+          setError(true);
+        }
+      };
+      getResponse();
+    }
+  }, [isMovieLoading]);
 
   const isPosterAvailable = movie?.poster_path
     ? `https://image.tmdb.org/t/p/original/${movie?.poster_path}`
