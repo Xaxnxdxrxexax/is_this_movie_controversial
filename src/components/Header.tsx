@@ -12,7 +12,7 @@ export default function Header() {
   }
   return (
     <>
-      <nav className="flex flex-col gap-5 items-center text-white bg-black p-5 sm:flex-row sm:justify-between">
+      <nav className="flex flex-col gap-5 items-center text-white bg-gray-800 p-5 sm:flex-row sm:justify-between">
         <Link to="/" className="font-bold text-2xl">
           Is this movie controversial
         </Link>

@@ -7,7 +7,7 @@ export default function AboutMePage() {
       <img
         src={poster_not_found}
         alt="background"
-        className="object-cover brightness-[0.9] blur-sm absolute -z-10  overflow-hidden w-full h-full scale-110"
+        className="object-cover brightness-[0.5] blur-sm absolute -z-10  overflow-hidden w-full h-full scale-110"
       />
       <div className="p-5 sm:grid sm:grid-cols-[1fr,3fr]">
         <img

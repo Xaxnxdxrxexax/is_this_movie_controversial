@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { MovieResult } from "../data/searchMoviesResult";
 import posterNotFound from "../poster-not-found-background.jpeg";
 import FavoriteSVG from "./FavoriteSVG";
+import { useParams } from "react-router-dom";
+
+type Params = {
+  movieList: string;
+};
 
 type Props = {
   movie: MovieResult;
@@ -14,9 +19,14 @@ type Props = {
 
 export default function MovieBox({ movie, handleFavorites, favorites }: Props) {
   const isInFavorites = favorites?.find((fav) => fav.id === movie.id);
+  const params = useParams<Params>();
   return (
-    <div className="grid grid-rows-[4fr_1fr] items-center w-52 m-3 rounded-2xl border border-gray-600 overflow-clip cursor-pointer">
-      <Link to={movie.id.toString()} key={movie.id} className="block h-full">
+    <div className="grid grid-rows-[4fr_1fr] items-center w-52 m-3 rounded-2xl border border-white overflow-clip cursor-pointer">
+      <Link
+        to={`${params.movieList}/${movie.id.toString()}`}
+        key={movie.id}
+        className="block h-full"
+      >
         <img
           src={
             movie.poster_path !== null
@@ -29,7 +39,7 @@ export default function MovieBox({ movie, handleFavorites, favorites }: Props) {
         />
       </Link>
       <div className="bg-white z-10 flex justify-between items-center px-1 h-full">
-        <p title={movie.title} className="text-sm cursor-text">
+        <p title={movie.title} className="text-base cursor-text">
           {movie.title}
         </p>
         <div

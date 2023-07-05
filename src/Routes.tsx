@@ -3,7 +3,7 @@ import SingleMovieInfoPage from "./pages/SingleMovieInfoPage";
 import AboutMePage from "./pages/AboutMePage";
 import App from "./App";
 import ErrorPage from "./pages/ErrorPage";
-import HomePage from "./pages/HomePage";
+//import HomePage from "./pages/HomePage";
 import { ListsMoviesFromSearch } from "./pages/ListsMoviesFromSearch";
 
 const router = createBrowserRouter([
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <ListsMoviesFromSearch />,
       },
       {
         path: "about-me",
@@ -26,6 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: ":movieList/:movieId",
+        element: <SingleMovieInfoPage />,
+      },
+      //TODO improve this page
+      {
+        path: ":movieList/:movieList/:movieId",
         element: <SingleMovieInfoPage />,
       },
     ],
