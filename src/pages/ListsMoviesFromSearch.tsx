@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Movie, MovieResult } from "../data/searchMoviesResult";
 import MovieBox from "../components/MovieBox";
@@ -120,7 +120,6 @@ export function ListsMoviesFromSearch() {
             <MovieBox
               movie={movie}
               handleFavorites={handleFavorites}
-              favorites={favorites}
               key={movie.id}
             />
           ))
@@ -137,7 +136,6 @@ export function ListsMoviesFromSearch() {
             <MovieBox
               movie={movie}
               handleFavorites={handleFavorites}
-              favorites={favorites}
               key={movie.id}
             />
           ))

@@ -3,6 +3,7 @@ import { MovieResult } from "../data/searchMoviesResult";
 import posterNotFound from "../poster-not-found-background.jpeg";
 import FavoriteSVG from "./FavoriteSVG";
 import { useParams } from "react-router-dom";
+import { useFavorites } from "../store/store-zustand";
 
 type Params = {
   movieList: string;
@@ -14,10 +15,10 @@ type Props = {
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
     movie: MovieResult
   ) => void;
-  favorites: MovieResult[] | null;
 };
 
-export default function MovieBox({ movie, handleFavorites, favorites }: Props) {
+export default function MovieBox({ movie, handleFavorites }: Props) {
+  const favorites = useFavorites();
   const isInFavorites = favorites?.find((fav) => fav.id === movie.id);
   const params = useParams<Params>();
   return (
