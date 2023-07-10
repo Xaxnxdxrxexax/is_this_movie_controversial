@@ -5,6 +5,20 @@ import { ActorsMovieResult } from "../data/actorsMovieResult";
 import IMDB_logo from "../IMDB_logo.png";
 import poster_not_found from "../poster-not-found-background.jpeg";
 import { Configuration, OpenAIApi } from "openai";
+import {
+  useSingleMovie,
+  useCast,
+  useChatGPT,
+  useIsCastLoading,
+  useIsChatGPTLoading,
+  useIsMovieLoading,
+  useSetIsCastLoading,
+  useSetIsChatGPTLoading,
+  useSetIsMovieLoading,
+  useSetCastAndCrew,
+  useSetChatGPT,
+  useSetSingleMovie,
+} from "../store/store-zustand";
 
 type Params = {
   movieId: string;
@@ -15,13 +29,22 @@ export default function SingleMovieInfoPage() {
   const params = useParams<Params>();
 
   // fetch the singleMovie via the movieId and the actors
-  const [movie, setMovie] = useState<SingleMovie | null>(null);
-  const [cast, setCastAndCrew] = useState<ActorsMovieResult | null>(null);
-  const [chatGPT, setChatGPT] = useState<string | null>(null);
+  const [movie, setMovie] = [useSingleMovie(), useSetSingleMovie()];
+  const [cast, setCastAndCrew] = [useCast(), useSetCastAndCrew()];
+  const [chatGPT, setChatGPT] = [useChatGPT(), useSetChatGPT()];
+  const [isChatGPTLoading, setIsChatGPTLoading] = [
+    useIsChatGPTLoading(),
+    useSetIsChatGPTLoading(),
+  ];
+  const [isCastLoading, setIsCastLoading] = [
+    useIsCastLoading(),
+    useSetIsCastLoading(),
+  ];
+  const [isMovieLoading, setIsMovieLoading] = [
+    useIsMovieLoading(),
+    useSetIsMovieLoading(),
+  ];
   const [error, setError] = useState(false);
-  const [isChatGPTLoading, setIsChatGPTLoading] = useState(true);
-  const [isCastLoading, setIsCastLoading] = useState(true);
-  const [isMovieLoading, setIsMovieLoading] = useState(true);
 
   //open ai configuration and response
   const openAI = new OpenAIApi(
@@ -32,6 +55,7 @@ export default function SingleMovieInfoPage() {
 
   //fetch the movie link and the credits for that movie,
   useEffect(() => {
+    setMovie(null);
     setIsCastLoading(true);
     setIsMovieLoading(true);
 

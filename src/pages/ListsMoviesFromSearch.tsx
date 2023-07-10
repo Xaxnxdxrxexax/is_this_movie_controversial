@@ -17,12 +17,9 @@ type Params = {
 };
 
 export function ListsMoviesFromSearch() {
-  const movieList = useMovieList();
-  const setMovieList = useSetMovieList();
-  const popularList = usePopularList();
-  const setPopularList = useSetPopularList();
-  const favorites = useFavorites();
-  const setFavorites = useSetFavorites();
+  const [movieList, setMovieList] = [useMovieList(), useSetMovieList()];
+  const [popularList, setPopularList] = [usePopularList(), useSetPopularList()];
+  const [favorites, setFavorites] = [useFavorites(), useSetFavorites()];
   const params = useParams<Params>();
 
   // Fetch the popular list of movies
