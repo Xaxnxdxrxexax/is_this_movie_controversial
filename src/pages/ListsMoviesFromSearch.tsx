@@ -3,15 +3,26 @@ import { useParams } from "react-router-dom";
 import { Movie, MovieResult } from "../data/searchMoviesResult";
 import MovieBox from "../components/MovieBox";
 import poster_not_found from "../poster-not-found-background.jpeg";
+import {
+  useMovieList,
+  useFavorites,
+  usePopularList,
+  useSetFavorites,
+  useSetMovieList,
+  useSetPopularList,
+} from "../store/store-zustand";
 
 type Params = {
   movieList: string;
 };
 
 export function ListsMoviesFromSearch() {
-  const [movieList, setMovieList] = useState<Movie | null>(null);
-  const [popularList, setPopularList] = useState<Movie | null>(null);
-  const [favorites, setFavorites] = useState<MovieResult[] | null>(null);
+  const movieList = useMovieList();
+  const setMovieList = useSetMovieList();
+  const popularList = usePopularList();
+  const setPopularList = useSetPopularList();
+  const favorites = useFavorites();
+  const setFavorites = useSetFavorites();
   const params = useParams<Params>();
 
   // Fetch the popular list of movies
