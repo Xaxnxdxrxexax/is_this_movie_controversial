@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+## This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can see it live at [Is this movie controversial?](https://is-this-movie-controversial.vercel.app/)
 
-This project uses:
+### This project uses:
 
 - TypeScript (TSX)
 - React Router
