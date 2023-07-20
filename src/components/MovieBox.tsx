@@ -36,7 +36,7 @@ export default function MovieBox({ movie, handleFavorites }: Props) {
           }
           alt={movie.title}
           title={`Go to ${movie.title}'s detailed page`}
-          className="object-cover h-full blur-[1px] transition ease-in-out hover:blur-none hover:scale-110"
+          className="object-cover h-full sm:blur-[1px] transition ease-in-out hover:blur-none hover:scale-110"
         />
       </Link>
       <div className="bg-white z-10 flex justify-between items-center px-1 h-full">
