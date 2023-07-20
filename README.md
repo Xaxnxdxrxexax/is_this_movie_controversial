@@ -5,9 +5,9 @@ You can see it live at [Is this movie controversial?](https://is-this-movie-cont
 ### This project uses:
 
 - TypeScript (TSX)
-- React Router
-- Zustand for state management
-- Tailwind
-- Local Storage for saving the favorites
-- TMDB API for movie lists and info
-- ChatGPT for finding controversial information about a movie (and cast) (information up to 2021)
+- React Router (pages management)
+- Zustand (state management)
+- Tailwind (mobile first)
+- Local Storage (saving the favorites locally)
+- TMDB API (movie lists and info)
+- ChatGPT API for finding controversial information about a movie (and cast) (information up to 2021)
