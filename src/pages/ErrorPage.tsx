@@ -8,7 +8,7 @@ export default function ErrorPage() {
     <div>
       <Header />
       <div className="text-center text-4xl">
-        <div>Error Page Placeholder</div>
+        <div>Error Page...</div>
         {isError(error) && <p className="text-slate-500">{error.statusText}</p>}
       </div>
       <Footer />

@@ -67,12 +67,18 @@ export function ListsMoviesFromSearch() {
 
   // get favorites useEffect
   useEffect(() => {
-    const movieFavorites: MovieResult[] =
-      JSON.parse(
-        localStorage.getItem("is_this_movie_controversial_fav") || ""
-      ) ?? null;
-    if (movieFavorites) {
-      setFavorites(movieFavorites);
+    const movieFavoritesJSON = localStorage.getItem(
+      "is_this_movie_controversial_fav"
+    );
+    if (movieFavoritesJSON) {
+      try {
+        const movieFavorites: MovieResult[] = JSON.parse(movieFavoritesJSON);
+        console.log("favorites", movieFavorites);
+        setFavorites(movieFavorites);
+      } catch (error) {
+        console.error("Error parsing favorites:", error);
+        // Handle the error or provide a default value if necessary
+      }
     }
   }, []);
 
