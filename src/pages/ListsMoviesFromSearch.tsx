@@ -143,7 +143,9 @@ export function ListsMoviesFromSearch() {
             />
           ))
         ) : (
-          <div className="text-center">No favorites at the moment</div>
+          <div className="text-center text-white text-xl py-2">
+            No favorite movies at the moment...
+          </div>
         )}
       </ul>
     </div>
