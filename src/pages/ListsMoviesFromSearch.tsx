@@ -127,7 +127,9 @@ export function ListsMoviesFromSearch() {
             />
           ))
         ) : (
-          <div>Search something first</div>
+          <div className="text-center text-white text-xl py-2">
+            Search something first
+          </div>
         )}
       </ul>
       <h2 className="text-center font-bold text-white text-4xl pt-2">
