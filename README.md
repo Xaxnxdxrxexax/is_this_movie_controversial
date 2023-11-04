@@ -16,16 +16,16 @@ You can see it live at [Is this movie controversial?](https://is-this-movie-cont
 
 ![mobile](./public/screenshots/is-this-movie-controversial.vercel.app_.png)
 
-![mobile movie](<./public/screenshots/is-this-movie-controversial.vercel.app_%20(5).png>)
+![mobile movie](<./public/screenshots/is-this-movie-controversial.vercel.app_(5).png>)
 
 ## 768px
 
-![tablet](<./public/screenshots/is-this-movie-controversial.vercel.app_%20(1).png>)
+![tablet](<./public/screenshots/is-this-movie-controversial.vercel.app_(1).png>)
 
-![tablet movie](<./public/screenshots/is-this-movie-controversial.vercel.app_%20(6).png>)
+![tablet movie](<./public/screenshots/is-this-movie-controversial.vercel.app_(6).png>)
 
 ## 1440px
 
-![desktop](<./public/screenshots/is-this-movie-controversial.vercel.app_%20(7).png>)
+![desktop](<./public/screenshots/is-this-movie-controversial.vercel.app_(7).png>)
 
-![desktop movie](<./public/screenshots/is-this-movie-controversial.vercel.app_%20(4).png>)
+![desktop movie](<./public/screenshots/is-this-movie-controversial.vercel.app_(4).png>)
